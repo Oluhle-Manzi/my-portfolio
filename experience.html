@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | Oluhlelwande Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+       <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(189, 72, 150, 0.1);
+        }
+
+        .logo {
+            color: #bd4896;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #bd4896;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #bd4896;
+            transition: width 0.3s;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        /* Experience Section */
+        .experience {
+            min-height: 100vh;
+            padding: 120px 100px 50px;
+            background: linear-gradient(135deg, #000 0%, #1a0a15 50%, #000 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 60px;
+            color: #ccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .experience-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(189, 72, 150, 0.2);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #ccc;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            color: #bd4896;
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            transition: width 0.3s ease;
+        }
+
+        .tab-btn.active::after {
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .experience-card {
+            background: linear-gradient(145deg, #111, #1a1a1a);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(189, 72, 150, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(189, 72, 150, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .experience-card:hover::before {
+            left: 100%;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(189, 72, 150, 0.3);
+            box-shadow: 0 20px 40px rgba(189, 72, 150, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .company-info h3 {
+            color: #bd4896;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .position {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .duration {
+            color: #ccc;
+            font-size: 14px;
+            background: rgba(189, 72, 150, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(189, 72, 150, 0.2);
+        }
+
+        .card-body {
+            margin-bottom: 25px;
+        }
+
+        .description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .achievements {
+            margin-bottom: 20px;
+        }
+
+        .achievements h4 {
+            color: #bd4896;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .achievements ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .achievements li {
+            color: #ccc;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .achievements li::before {
+            content: '▶';
+            color: #bd4896;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .skills-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #bd4896, #d896bd);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: #bd4896;
+            border-radius: 50%;
+            border: 3px solid #000;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: #bd4896;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        /* GitHub Link Styles */
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            color: #bd4896;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .github-link i {
+            margin-right: 8px;
+        }
+        
+        .github-link:hover {
+            color: #d896bd;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .experience {
+                padding: 100px 20px 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .experience-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .tab-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .experience-card {
+                padding: 25px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+    <header class="header">
+        <a href="#" class="logo">Oluhlelwande</a>
+        <nav class="navbar" id="navbar">
+        <a class='active' href='/'>Home</a>
+        <a href="services.html">Services</a>
+        <a href="skills.html">Skills</a>
+        <a href="education.html">Education</a>
+        <a href="experience.html">Experience</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+        
+    <section class="experience" id="experience">
+        <h4 class="section-title">My Experience</h4>
+        <p class="section-subtitle">
+            My professional journey and key achievements in cybersecurity and software development
+        </p>
+
+        <div class="experience-container">
+            <div class="experience-tabs">
+                <button class="tab-btn active" onclick="showTab('work')">
+                    <i class="fas fa-briefcase"></i> Work Experience
+                </button>
+                <button class="tab-btn" onclick="showTab('projects')">
+                    <i class="fas fa-code"></i> Projects
+                </button>
+                <button class="tab-btn" onclick="showTab('certifications')">
+                    <i class="fas fa-certificate"></i> Certifications
+                </button>
+            </div>
+
+
+<div class="tab-content active" id="work-experience">
+    <div class="experience-grid timeline">
+
+       
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>BetSoftware</h3>
+                    <div class="position">Featured Article</div>
+                </div>
+                <div class="duration">13 June 2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Featured in BetSoftware's official article highlighting my journey as a Dare to Dream bursary recipient and how it has impacted my life as a final-year student.
+                </p>
+                <a href="https://betsoftware.com/blog/a-youth-month-story-passion-perseverance-and-possibility" class="github-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Read Article
+                </a>
+            </div>
+        </div>
+
+       
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Prodigy InfoTech</h3>
+                    <div class="position">Cybersecurity Virtual Intern</div>
+                </div>
+                <div class="duration">Aug 2025 - Aug 2025 · 1 mo</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Completed a Cybersecurity Virtual Internship through Prodigy InfoTech.
+                </p>
+                <div class="achievements">
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Analyzed web activity logs to identify security incidents</li>
+                        <li>Assisted in a simulated cyber breach response</li>
+                        <li>Reported findings on suspicious user activity</li>
+                    </ul>
+                </div>
+                <div class="skills-used">
+                    <span class="skill-tag">Cybersecurity</span>
+                    <span class="skill-tag">Incident Response</span>
+                    <span class="skill-tag">Log Analysis</span>
+                    <span class="skill-tag">Security Monitoring</span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Sivubela Intuthuko Newspaper</h3>
+                    <div class="position">Web Administrator Intern</div>
+                </div>
+                <div class="duration">Aug 2025 - Sep 2025 · 2 mos</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Participated in remote interviews, surveys, and updated the website content daily.
+                </p>
+                <div class="achievements">
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Shared insights on products, services, and user experiences</li>
+                        <li>Uploaded and updated new and trending stories on the website</li>
+                        <li>Website administration</li>
+                    </ul>
+                </div>
+                <div class="skills-used">
+                    <span class="skill-tag">User Research</span>
+                    <span class="skill-tag">UX</span>
+                    <span class="skill-tag">Administration</span>
+                    <span class="skill-tag">Data Analysis</span>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Outlier</h3>
+                    <div class="position">Freelance Software Engineer</div>
+                </div>
+                <div class="duration">Oct 2024 - Mar 2025 · 6 mos</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Contributed to the development and refinement of AI models by providing high-quality training data.
+                </p>
+                <div class="achievements">
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Reviewed, rated, and generated text-based responses across various topics</li>
+                        <li>Improved the accuracy, reliability, and contextual understanding of AI systems</li>
+                        <li>Ensured diverse, unbiased data input through critical thinking and attention to detail</li>
+                    </ul>
+                </div>
+                <div class="skills-used">
+                    <span class="skill-tag">AI Training</span>
+                    <span class="skill-tag">Data Annotation</span>
+                    <span class="skill-tag">Natural Language Processing</span>
+                    <span class="skill-tag">Quality Assurance</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    
+<div class="tab-content" id="projects">
+    <div class="experience-grid">
+
+        
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>CTU Buddy App</h3>
+                    <div class="position">Campus Companion Application – Sapphire Inc.</div>
+                </div>
+                <div class="duration">2023</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    A student-focused mobile application developed for Central Technical University, designed to streamline campus life by providing quick access to schedules, announcements, and resources in one place.
+                </p>
+                <div class="achievements">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Personalized class schedules with reminders</li>
+                        <li>Campus news and important announcements feed</li>
+                        <li>Interactive campus map and location finder</li>
+                        <li>Resource center with academic documents and forms</li>
+                        <li>Student profile and notification settings</li>
+                    </ul>
+                </div>
+                <div class="skills-used">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">API</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">Mobile Development</span>
+                    <span class="skill-tag">UI/UX Design</span>
+                </div>
+                <a href="https://github.com/Oluhle-Manzi/Sapphire-Inc." class="github-link" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+
+      
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>75 Hard Challenge</h3>
+                    <div class="position">Discipline & Fitness Habit Tracker</div>
+                </div>
+                <div class="duration">2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    A habit-building and accountability app designed to guide users through the 75-day mental toughness program, tracking daily tasks, progress, and streaks for maximum discipline and consistency.
+                </p>
+                <div class="achievements">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Daily checklist for all 75 Hard requirements</li>
+                        <li>Automatic streak tracking and challenge reset on missed days</li>
+                        <li>Progress calendar and visual streak indicators</li>
+                        <li>Motivational reminders and habit consistency stats</li>
+                        <li>Data storage with cloud sync</li>
+                    </ul>
+                </div>
+                <div class="skills-used">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Habit Tracking</span>
+                    <span class="skill-tag">Mobile Development</span>
+                </div>
+                <a href="https://github.com/Oluhle-Manzi/75-HARD-TRACKER" class="github-link" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>SheCodes Weather App</h3>
+                    <div class="position">Real-Time Weather Forecast Application</div>
+                </div>
+                <div class="duration">2024</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    A responsive weather application providing real-time weather data and forecasts for cities worldwide.
+                </p>
+                <div class="achievements">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Search weather by city with live API data</li>
+                        <li>Displays temperature, humidity, wind speed, and conditions</li>
+                        <li>5-day weather forecast with icons</li>
+                        <li>Responsive, mobile-friendly design</li>
+                        <li>Dynamic date and time updates</li>
+                    </ul>
+                </div>
+                <div class="skills-used">
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">API Integration</span>
+                    <span class="skill-tag">Responsive Design</span>
+                </div>
+                <a href="https://github.com/Oluhle-Manzi/Vanilla-waether-app" class="github-link" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+           
+<div class="tab-content" id="certifications">
+    <div class="experience-grid">
+       
+                 <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>IT Specialist - JavaScript</h3>
+                    <div class="position">Certiport/Pearson Vue</div>
+                </div>
+                <div class="duration">Oct 2023</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Entry-level certification validating foundational JavaScript programming skills,
+                    including language syntax, coding best practices, and application of JavaScript 
+                    in web development.
+                </p>
+                <a href="https://www.credly.com/earner/earned/badge/afea2899-719a-4631-8fce-d9f71135308c" target="_blank">
+                    <i class="fas fa-certificate"></i> View Certificate
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Introduction to Coding</h3>
+                    <div class="position">SheCodes Foundation</div>
+                </div>
+                <div class="duration">Jan 2024</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Introduction to coding fundamentals using html & css and basic syntax.
+                </p>
+                <a href="https://www.shecodes.io/certificates/db58a6331d2df88b416bc10d1b32caab"  target="_blank">
+                    <i class="fas fa-certificate"></i> View Certificate
+                </a>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Web Development</h3>
+                    <div class="position">SheCodes Foundation</div>
+                </div>
+                <div class="duration">March 2024</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Basic HTML structure, elements, and web page development fundamentals..
+                </p>
+                <a href="https://www.shecodes.io/certificates/d56aabe82e73081f15f85d713495e2c0"  target="_blank">
+                    <i class="fas fa-certificate"></i> View Credential
+                </a>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Responsive Web Development</h3>
+                    <div class="position">Shecodes Foundation</div>
+                </div>
+                <div class="duration">April 2024</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    In depth knowledege of web development.
+                </p>
+                <a href="https://www.shecodes.io/certificates/3305ac91bce25afafe6d37c7c60c9c6c" class="github-link" target="_blank">
+                    <i class="fas fa-certificate"></i> View Credential
+                </a>
+            </div>
+        </div>
+
+     
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>React Development</h3>
+                    <div class="position">SheCodes Foundation</div>
+                </div>
+                <div class="duration">May 2024</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Basic HTML structure, elements, and web page development fundamentals.
+                </p>
+                <a href="https://www.shecodes.io/certificates/0eab33093e87b3be36a939bd8bf013cf" class="github-link" target="_blank">
+                    <i class="fas fa-certificate"></i> View Credential
+                </a>
+            </div>
+        </div>
+
+      
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Networking Basics</h3>
+                    <div class="position">Cisco</div>
+                </div>
+                <div class="duration">April 2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Fundamental knowledge of computer networking and discover how networks operate.
+                </p>
+                <a href="https://www.credly.com/earner/earned/badge/787bf518-2988-455a-9e7f-5c5401897783" class="github-link" target="_blank">
+                    <i class="fas fa-certificate"></i> View Credential
+                </a>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Introduction to Cybersecurity</h3>
+                    <div class="position">Cisco</div>
+                </div>
+                <div class="duration">Jun 2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Fundamental concepts of cybersecurity including threats, vulnerabilities, and protection methods.
+                </p>
+                <a href="https://www.credly.com/earner/earned/badge/7861176d-5ffd-4b70-bbae-eba6770c4218" class="github-link" target="_blank">
+                    <i class="fas fa-certificate"></i> View Credential
+                </a>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Penetration Testing Essential Training</h3>
+                    <div class="position">LinkedIn Learning</div>
+                </div>
+                <div class="duration">Mar 2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Completed Penetration Testing Essential Training
+                </p>
+                <div class="achievements">
+                    <h4>Skills Covered:</h4>
+                    <ul>
+                        <li>gaining practical skills in ethical hacking methodologies, 
+                        <li>Vulnerability assessment</li> 
+                        <li>Security tool utilization to identify and mitigate cybersecurity risks.</li>
+                    </ul>
+                    <a href="https://www.linkedin.com/learning/certificates/7b333b90c2ca39649943f80fbbc9693ce5c61ce4df649b31e6527127df7eee31?trk=share_certificate" class="github-link" target="_blank">
+                        <i class="fas fa-certificate"></i> View Credential
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Certificate in Full Stack Development</h3>
+                    <div class="position">FNB App Academy</div>
+                </div>
+                <div class="duration">Jul 2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    32-credit professional certification covering comprehensive full stack development skills.
+                </p>
+                <div class="achievements">
+                    <h4>Skills Covered:</h4>
+                    <ul>
+                        <li>App Strategies & Design Thinking</li>
+                        <li>GitHub and Collaboration</li>
+                        <li>Frontend Development (HTML, UX, Layouts)</li>
+                        <li>Backend Development & API Building</li>
+                        <li>Data Management and Analysis</li>
+                        <li>AI in Development</li>
+                        <li>Business Development & App Marketing</li>
+                    </ul>
+                </div>
+          
+                <a href="https://media.licdn.com/dms/image/v2/D4D2DAQH6ANkoIyZQPw/profile-treasury-document-cover-images_480/B4DZiodqT8GgBI-/0/1755173007286?e=1755781200&v=beta&t=k4-CU2SLRmSaiMnDCtpt8V73VlOpzAWmizCiQOhGp6o" class="github-link" target="_blank">
+                    
+              
+                    <i class="fas fa-certificate"></i> View Certificate (PDF)
+                </a>
+                <div class="certificate-details" style="margin-top: 10px; font-size: 12px; color: #aaa;">
+                    <p>Certificate Number: A0TYAA072025</p>
+                    <p>Issued: 22 July 2025 by ITVarsity</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>Microsoft Certified: Azure AI Fundamentals</h3>
+                    <div class="position">Microsoft</div>
+                </div>
+                <div class="duration">Marc 2024</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                   
+                    Describe features of Natural Language Processing (NLP) workloads on Azure
+                  
+                </p>
+                <div class="achievements">
+                    <h4>Focus Areas:</h4>
+                    <ul>
+                        <li>Artificial Intelligence workloads and considerations</li>
+                        <li>Fundamental principles of machine learning on Azure</li>
+                        <li>Computer vision workloads on Azure.</li>
+                        <li>Natural Language Processing (NLP) workloads on Azure</li>
+                        <li>Generative AI workloads on Azure</li>
+                    </ul>
+                </div>
+                <a href="https://learn.microsoft.com/en-us/users/oluhlelwandemanzi-4047/credentials/certification/azure-ai-fundamentals?tab=credentials-tab" class="github-link" target="_blank">
+                    <i class="fas fa-certificate"></i> View Credential
+                </a>
+            </div>
+        </div>
+
+        
+
+        
+        <div class="experience-card">
+            <div class="card-header">
+                <div class="company-info">
+                    <h3>CompTIA Security+</h3>
+                    <div class="position">In Progress</div>
+                </div>
+                <div class="duration">Expected 2025</div>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    Currently preparing for the CompTIA Security+ certification to validate foundational cybersecurity skills and knowledge.
+                </p>
+                <div class="achievements">
+                    <h4>Focus Areas:</h4>
+                    <ul>
+                        <li>Network Security</li>
+                        <li>Compliance and Operational Security</li>
+                        <li>Threats and Vulnerabilities</li>
+                        <li>Application, Data and Host Security</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <script>
+        function showTab(tabName) {
+            
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            
+            document.getElementById(tabName).classList.add('active');
+
+           
+            event.target.classList.add('active');
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+       
+        document.querySelectorAll('.experience-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

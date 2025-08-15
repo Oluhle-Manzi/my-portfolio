@@ -1,0 +1,431 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Oluhlelwande Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(189, 72, 150, 0.1);
+        }
+
+        .logo {
+            color: #bd4896;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #bd4896;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #bd4896;
+            transition: width 0.3s;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        /* Services Section */
+        .services {
+            min-height: 100vh;
+            padding: 120px 100px 50px;
+            background: linear-gradient(135deg, #000 0%, #1a0a15 50%, #000 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 60px;
+            color: #ccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #111, #1a1a1a);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(189, 72, 150, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(189, 72, 150, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(189, 72, 150, 0.2);
+            border-color: #bd4896;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 30px;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg);
+            box-shadow: 0 10px 30px rgba(189, 72, 150, 0.5);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #bd4896;
+        }
+
+        .service-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: #bbb;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #bd4896;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: linear-gradient(45deg, rgba(189, 72, 150, 0.1), rgba(216, 150, 189, 0.1));
+            border-radius: 20px;
+            border: 1px solid rgba(189, 72, 150, 0.2);
+        }
+
+        .cta-section h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #bd4896;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            color: #bd4896;
+            border: 2px solid #bd4896;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #bd4896;
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(189, 72, 150, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header {
+                padding: 20px 50px;
+            }
+            
+            .services {
+                padding: 120px 50px 50px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .navbar a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+            
+            .services {
+                padding: 100px 20px 30px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+            
+            .section-subtitle {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card h3 {
+                font-size: 20px;
+            }
+            
+            .service-card p {
+                font-size: 14px;
+            }
+            
+            .cta-section h3 {
+                font-size: 24px;
+            }
+            
+            .cta-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Oluhlelwande</a>
+        <nav class="navbar" id="navbar">
+        <a class='active' href='/'>Home</a>
+        <a href="services.html">Services</a>
+        <a href="skills.html">Skills</a>
+        <a href="education.html">Education</a>
+        <a href="experience.html">Experience</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <section class="services">
+        <h4 class="section-title">My Services</h4>
+        <p class="section-subtitle">
+            I offer comprehensive cybersecurity and IT solutions to help protect your digital assets and optimize your technology infrastructure.
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Cybersecurity Assessment</h3>
+                <p>Comprehensive security evaluations to identify vulnerabilities and strengthen your digital defenses.</p>
+                <ul class="service-features">
+                    <li>Vulnerability scanning and assessment</li>
+                    <li>Security policy development</li>
+                    <li>Risk analysis and mitigation</li>
+                    <li>Compliance auditing</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Network Security</h3>
+                <p>Design and implement robust network security solutions to protect your infrastructure.</p>
+                <ul class="service-features">
+                    <li>Firewall configuration and management</li>
+                    <li>Network monitoring and analysis</li>
+                    <li>Intrusion detection systems</li>
+                    <li>Secure network architecture</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Software Development</h3>
+                <p>Custom software solutions designed to meet your unique business needs and improve operational efficiency.</p>
+                <ul class="service-features">
+                    <li>Custom application development</li>
+                    <li>System integration services</li>
+                    <li>Software testing and quality assurance</li>
+                    <li>Maintenance and support</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Professional, responsive, and user-friendly websites built to strengthen your online presence.</p>
+                <ul class="service-features">
+                    <li>Responsive website design</li>
+                    <li>E-commerce development</li>
+                    <li>Content management systems (CMS)</li>
+                    <li>Website optimization and performance tuning</li>
+                </ul>
+            </div>
+
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Security Training</h3>
+                <p>Educational programs to increase security awareness and build cyber resilience in your organization.</p>
+                <ul class="service-features">
+                    <li>Employee security awareness training</li>
+                    <li>Phishing simulation exercises</li>
+                    <li>Security policy education</li>
+                    <li>Incident response training</li>
+                </ul>
+            </div>
+
+           
+        </div>
+
+        <div class="cta-section">
+            <h3>Your security doesn't have to be complicated</h3>
+            <p>Let set up protection that makes sense for what you actually need</p>
+            <a href="contact.html" class="btn">Get Started</a>
+        </div>
+    </section>
+</body>
+</html>   

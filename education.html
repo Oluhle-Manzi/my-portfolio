@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education | Oluhlelwande Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+      
+        .header {
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(189, 72, 150, 0.1);
+        }
+
+        .logo {
+            color: #bd4896;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #bd4896;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #bd4896;
+            transition: width 0.3s;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+       
+        .education {
+            min-height: 100vh;
+            padding: 120px 100px 50px;
+            background: linear-gradient(135deg, #000 0%, #1a0a15 50%, #000 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 60px;
+            color: #ccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            background-color: transparent;
+            width: 50%;
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            animation-delay: 0.4s;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: #bd4896;
+            border: 4px solid #000;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(189, 72, 150, 0.5);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background: linear-gradient(145deg, #111, #1a1a1a);
+            position: relative;
+            border-radius: 15px;
+            border: 1px solid rgba(189, 72, 150, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(189, 72, 150, 0.2);
+            border-color: rgba(189, 72, 150, 0.3);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border: 15px solid;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+            border-color: transparent transparent transparent #1a1a1a;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+            border-color: transparent #1a1a1a transparent transparent;
+        }
+
+        .education-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover .education-icon {
+            transform: rotateY(360deg);
+            box-shadow: 0 10px 25px rgba(189, 72, 150, 0.4);
+        }
+
+        .education-date {
+            color: #bd4896;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .education-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .education-institution {
+            font-size: 18px;
+            color: #bd4896;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .education-location {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .education-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .education-highlights {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .education-highlights li {
+            padding: 5px 0;
+            color: #ccc;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .education-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #bd4896;
+            font-weight: bold;
+        }
+
+        .grade {
+            display: inline-block;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .additional-education {
+            margin-top: 80px;
+        }
+
+        .additional-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #bd4896;
+        }
+
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .additional-card {
+            background: linear-gradient(145deg, #111, #1a1a1a);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(189, 72, 150, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .additional-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(189, 72, 150, 0.2);
+            border-color: #bd4896;
+        }
+
+        .additional-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #bd4896, #d896bd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: #000;
+        }
+
+        .additional-card h4 {
+            font-size: 20px;
+            color: #bd4896;
+            margin-bottom: 10px;
+        }
+
+        .additional-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+     
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+     
+        @media (max-width: 1024px) {
+            .header {
+                padding: 20px 50px;
+            }
+            
+            .education {
+                padding: 120px 50px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .navbar a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+            
+            .education {
+                padding: 100px 20px 30px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 20px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::before {
+                left: 10px;
+            }
+            
+            .timeline-item:nth-child(even)::before {
+                left: 10px;
+            }
+            
+            .timeline-content::before {
+                left: -30px;
+                border-color: transparent #1a1a1a transparent transparent;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -30px;
+                border-color: transparent #1a1a1a transparent transparent;
+            }
+            
+            .additional-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .education-title {
+                font-size: 20px;
+            }
+            
+            .education-institution {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Oluhlelwande</a>
+        <nav class="navbar" id="navbar">
+        <a class='active' href='/'>Home</a>
+        <a href="services.html">Services</a>
+        <a href="skills.html">Skills</a>
+        <a href="education.html">Education</a>
+        <a href="experience.html">Experience</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+    </header>
+
+    <section class="education">
+        <h2 class="section-title">My Education</h2>
+        <p class="section-subtitle">
+            My academic journey and continuous learning path in technology and software development.
+        </p>
+
+        
+        <div class="timeline">
+            <!-- High School -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="education-date">2018 - 2022</div>
+                    <h3 class="education-title">High School Bachelors Pass</h3>
+                    <h4 class="education-institution"></h4>
+                    <p class="education-location">South Africa</p>
+                    <p class="education-description">
+                        Completed secondary education with focus on core academic subjects. 
+                        Developed critical thinking and problem-solving skills.
+                    </p>
+                    <ul class="education-highlights">
+                        <li>Mathematics and Science</li>
+                        <li>Engineering Graphics & Design</li>
+                        <li>Civil Technology: Construction</li>
+                    </ul>
+                    <span class="grade">Completed</span>
+                </div>
+            </div>
+
+            <!-- University -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="education-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-date">2023 - 2025</div>
+                    <h3 class="education-title">Information Technology- Cybersecurity</h3>
+                    <h4 class="education-institution">CTU Training Solutions</h4>
+                    <p class="education-location">South Africa</p>
+                    <p class="education-description">
+                        Undergraduate studies in Information technology - Cybersecurity covering algorithms, data structures, 
+                        and computer systems. Developed foundational knowledge in computing principles. Comprehensive program covering software development methodologies, system design, 
+                        and programming fundamentals. Developed strong foundation in software engineering principles.
+                    </p>
+                    <ul class="education-highlights">
+                        <li>Cloud Fundamentals</li>
+                        <li>Programming with Python</li>
+                        <li>System analysis</li>
+                        <li>Core Web Development</li>
+                        <li>Advanced Java</li>
+                        <li>DevOps Eng</li>
+                        <li>Business Programming</li>
+                    </ul>
+                    <span class="grade">In Progress</span>
+                </div>
+            </div>
+
+
+  
+            <!-- FNB App Academy -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-date">2025</div>
+                    <h3 class="education-title">Certificate in Full Stack Development</h3>
+                    <h4 class="education-institution">FNB App Academy</h4>
+                    <p class="education-location">South Africa</p>
+                    <p class="education-description">
+                        Intensive full stack development program covering modern web development technologies
+                        and collaborative software development practices.
+                    </p>
+                    <ul class="education-highlights">
+                        <li>App Strategies</li>
+                        <li>GitHub and Collaborations</li>
+                        <li>Build an App with HTML (The SDLC)</li>
+                        <li>Principles of UI design + Basic Layouts</li>
+                        <li>Front-end and back-end integration</li>
+                    </ul>
+                    <span class="grade">Completed</span>
+                </div>
+            </div>
+
+            <!-- Microsoft AI-900 Certificate -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="education-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="education-date">August 2025</div>
+                    <h3 class="education-title">Microsoft Certified: Azure AI Fundamentals Certificate</h3>
+                    <h4 class="education-institution"> Microsoft </h4>
+                    <p class="education-location">CTU Training Solutions</p>
+                    <p class="education-description">
+                        Foundational certification in artificial intelligence (AI) and machine learning (ML) concepts,
+                        focusing on Azure AI services, responsible AI principles, and practical applications through
+                        real-world examples.
+                    </p>
+                    <ul class="education-highlights">
+                        <li>Comprehensive introduction to AI and ML</li>
+                        <li>Overview of Azure AI services</li>
+                        <li>Computer vision, natural language processing, and conversational AI</li>
+                        <li>Responsible AI practices and ethics</li>
+                        <li>Industry-recognized Microsoft certification</li>
+                    </ul>
+                        
+
+                    <span class="grade">Completed</span>
+                    <div style="margin-top: 15px; font-size: 14px; color: #ccc;">
+                        <p>Issued: March 08, 2025</p>
+                        <p>Earning Criteria: Successfully passed all the requirements for Microsoft Certified: Azure AI Fundamentals</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IT Specialist — JavaScript Certification -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="education-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                <div class="education-date">2023</div>
+                <h3 class="education-title">IT Specialist — JavaScript</h3>
+                <h4 class="education-institution">Pearson VUE / Certiport</h4>
+                <p class="education-location">Online Learning</p>
+                <p class="education-description">
+                    Earned industry-recognized certification validating foundational JavaScript programming skills, 
+                    including syntax, logic, DOM manipulation, and application of JavaScript in interactive web development.
+                </p>
+                
+                <ul class="education-highlights">
+                    <li>Core JavaScript syntax and operators</li>
+                    <li>Functions, arrays, and objects</li>
+                    <li>DOM manipulation and event handling</li>
+                    <li>Debugging and error handling techniques</li>
+                    <li>Industry-recognized Pearson VUE / Certiport certification</li>
+                </ul>
+                <span class="grade">Completed</span>
+            </div>
+        </div>
+        
+    <section class="aditional learning & development">
+        <div class="additional-education">
+            <h3 class="additional-title">Additional Learning & Development</h3>
+            <div class="additional-grid">
+                <div class="additional-card">
+                    <div class="additional-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h4>Python Programming</h4>
+                    <p>Python programming for software development, automation, and scripting.</p>
+                </div>
+                
+                <div class="additional-card">
+                    <div class="additional-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>Database Systems</h4>
+                    <p>Database design, implementation, and management with SQL.</p>
+                </div> 
+                
+                <div class="additional-card">
+                    <div class="additional-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Web Development</h4>
+                    <p>Front-end and back-end web development technologies.</p>
+                </div>
+                
+                <div class="additional-card">
+                    <div class="additional-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Mobile Development</h4>
+                    <p>Principles of mobile application development and design.</p>
+                </div>
+                <div class="additional-card">
+                    <div class="additional-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>Cloud Computing</h4>
+                    <p>Fundamentals of cloud services and architecture.</p>
+                </div> 
+                <div class="additional-card">
+                    <div class="additional-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Information Security</h4>
+                    <p>Cybersecurity principles and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Intersection Observer for timeline animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Stagger animation for additional cards
+        const additionalCards = document.querySelectorAll('.additional-card');
+        additionalCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
